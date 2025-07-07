@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ReportController;
@@ -30,6 +31,11 @@ Route::get('/signout', [AuthController::class, 'logout'])->name('signout');
 
 Route::get('/signup', [SignUpController::class, 'create'])->name('signup.create');
 Route::post('/signup', [SignUpController::class, 'store'])->name('signup.store');
+
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs');
+Route::get('/test', function() {
+    echo 'test';
+});
 
 // Route::get('/approved/test', function() {
 //     return view('mails.user_requests.welcome');

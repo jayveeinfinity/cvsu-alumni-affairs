@@ -1,4 +1,5 @@
 import './bootstrap';
+import './alpine';
 
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
