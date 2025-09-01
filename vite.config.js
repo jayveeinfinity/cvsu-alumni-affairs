@@ -8,4 +8,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: 'localhost',
+        port: 5173,
+        origin: 'http://localhost:5173',
+        cors: {
+          origin: 'http://cvsu-alumni-affairs.test',
+        },
+    },
 });

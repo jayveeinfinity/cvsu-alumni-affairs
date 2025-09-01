@@ -32,7 +32,7 @@ class IndustryController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        Industry::create($request->validated());
+        $industry = Industry::create($request->validated());
 
         return response()->json('success', Response::HTTP_OK);
     }

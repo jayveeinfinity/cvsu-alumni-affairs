@@ -19,6 +19,7 @@ class CreateWorkExperiencesTable extends Migration
             $table->string('position');
             $table->string('institution');
             $table->string('employment_type');
+            $table->boolean('is_government');
             $table->unsignedBigInteger('industry_id');
             $table->year('date_started');
             $table->year('date_ended')->nullable();

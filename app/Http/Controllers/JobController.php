@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
+use App\Models\JobPosting;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class SkillController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $jobs = JobPosting::orderBy('created_at', 'desc')->paginate(10);
+
+        // dd($jobs);
+        
+        return view('jobs.index', compact('jobs'));
     }
 
     /**
@@ -29,12 +32,7 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        $skill = Skill::create([
-            'user_profile_id' => auth()->user()->profile->id,
-            'label' => $request->label,
-        ]);
-
-        return response()->json('success', Response::HTTP_OK);
+        //
     }
 
     /**
@@ -56,26 +54,9 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
-        $data = $request->only([
-            'skill_id',
-            'label',
-        ]);
-
-        $request->validate([
-            'label' => 'required|string|max:255',
-        ]);
-        
-        $skill = Skill::findOrFail($data['skill_id']);
-        $skill->update([
-            'label' => $data['label'],
-        ]);
-
-        return response()->json([
-            'message' => 'Skill updated successfully!',
-            'skill'   => $skill,
-        ]);
+        //
     }
 
     /**

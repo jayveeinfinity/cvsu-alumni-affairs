@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\Admin\UserController;
@@ -31,6 +32,11 @@ Route::get('/signout', [AuthController::class, 'logout'])->name('signout');
 
 Route::get('/signup', [SignUpController::class, 'create'])->name('signup.create');
 Route::post('/signup', [SignUpController::class, 'store'])->name('signup.store');
+
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs');
+Route::get('/test', function() {
+    echo 'test';
+});
 
 // Route::get('/approved/test', function() {
 //     return view('mails.user_requests.welcome');
@@ -88,5 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/edit/education/store', [EducationController::class, 'store'])->name('user.profile.education.store');
         Route::post('/edit/work-experience/store', [WorkExperienceController::class, 'store'])->name('user.profile.work_experience.store');
         Route::post('/edit/skill/store', [SkillController::class, 'store'])->name('user.profile.skill.store');
+        Route::post('/edit/skill/update', [SkillController::class, 'update'])->name('user.profile.skill.update');
+        Route::post('/edit/resume/upload', [ResumeController::class, 'store'])  ->name('user.profile.resume.upload');
     });
 });

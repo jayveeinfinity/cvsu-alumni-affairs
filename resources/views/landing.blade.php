@@ -712,7 +712,7 @@
 <!-- testimonial section end -->
 
 <!-- funfact section -->
-    <div class="rts__section section__padding">
+    <div class="rts__section section__padding mb-5">
     <div class="container">
         <div class="row g-30 justify-content-center wow animated slideInUp">
             <div class="col-lg-3 col-md-6">
@@ -886,7 +886,7 @@
                         <div class="blog__meta">
                             <div class="blog__meta__info d-flex gap-3 my-3">
                                 <span class="d-flex gap-1 align-items-center">
-                                    <!-- <img class="svg" src="/storage/img/icon/calender.svg" alt=""> -->
+                                    <img class="svg" src="/storage/img/icon/calender.svg" alt="">
                                     16 July, 2024</span>
                                 <a href="#" class="d-flex gap-1 align-items-center">
                                     <img src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-1/304883224_748825179899827_2176281368331495617_n.jpg?stp=cp0_dst-jpg_s40x40&_nc_cat=111&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeGmpvP9IX-v4qKf2tW6W_MPRH5q1Tvd1mZEfmrVO93WZnNDgsQkpS9pxdFCyOFRa0USi2DuedpnmnfwBQ4iMY13&_nc_ohc=qSEReyj2nHUQ7kNvgF6Ab-f&_nc_ht=scontent.fmnl13-2.fna&oh=00_AYCpLaFVM3cWM4PHPD7W2uTjScIljIGD9DfLoyOQ7pYHtw&oe=66FA7840" alt="" style="height: 16px !important;"> CvSU Office of the Alumni Affairs</a>
@@ -898,7 +898,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6 col-xl-4 col-md-10">
+                <div class="col-lg-6 col-xl-4 col-md-10">
                     <div class="rts__single__blog">
                         <a href="blog-details.html" class="blog__img">
                             <img src="/storage/img/home-1/blog/2.webp" class="mb-2" alt="blog">
@@ -931,7 +931,7 @@
                             <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>

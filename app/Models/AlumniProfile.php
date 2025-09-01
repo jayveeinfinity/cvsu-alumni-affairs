@@ -51,4 +51,9 @@ class AlumniProfile extends Model
         }
         return $status;
     }
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
 }
