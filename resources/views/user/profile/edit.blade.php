@@ -54,6 +54,7 @@
                     <a class="nav-link" href="#education" data-tab="education">Educational Background</a>
                     <a class="nav-link" href="#experience" data-tab="experience">Work Experience</a>
                     <a class="nav-link" href="#skills" data-tab="skills">Skills</a>
+                    <a class="nav-link" href="#resume" data-tab="resume">CV / Resume</a>
                 </div>
             </nav>
             <div class="tab-content clearfix">
@@ -297,14 +298,47 @@
                             <div class="alert alert-danger pl-0 d-none" id="addSkillsAlert">
                                 <ul class="mb-0" id="errorList"></ul>
                             </div>
-                            <h6>Skills <button class="btn btn-sm fill__btn border-6 font-xs" data-toggle="modal" data-target="#addSkillsForm" data-backdrop="static" data-keyboard="false">Add</button></h6>
-                                <div class="job__tags job__details__tags">
+                            <h6>Skills <button class="btn btn-sm fill__btn border-6 font-xs"
+                                id="addSkillBtn"
+                                data-toggle="modal"
+                                data-target="#addSkillsForm"
+                                data-backdrop="static"
+                                data-keyboard="false">Add</button>
+                            </h6>
+                            <div class="job__tags job__details__tags">
                                 @forelse($user->profile->skills as $skill)
-                                    <a class="job__tag">{{ $skill->label }}</a>
+                                    <a class="job__tag edit-skill"
+                                        data-id="{{ $skill->id }}"
+                                        data-label="{{ $skill->label }}"
+                                        data-toggle="modal"
+                                        data-target="#addSkillsForm"
+                                        data-backdrop="static"
+                                        data-keyboard="false">
+                                    {{ $skill->label }}</a>
                                 @empty
                                     <p>No skills yet. To add one, click add</p>
                                 @endforelse
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my__details tab-pane" id="resume">
+                        <div class="info__field mt-5">
+                            <div class="alert alert-danger pl-0 d-none" id="addResumeAlert">
+                                <ul class="mb-0" id="errorList"></ul>
+                            </div>
+                            <h6>Resume <button class="btn btn-sm fill__btn border-6 font-xs" id="addResumeBtn">Add</button></h6>
+                            <input type="file" id="resumeInput" name="resume" accept="application/pdf" hidden>
+                            <div id="resumeContainer" class="job__tags job__details__tags mt-2">
+                                @if($user->resume)
+                                    <a href="{{ Storage::url($user->resume->file_path) }}" 
+                                        target="_blank" 
+                                        class="job__tag">
+                                        {{ basename($user->resume->file_path) }}
+                                    </a>
+                                @else
+                                    <p id="noResumeText">No resume uploaded yet. To upload, click Add</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -499,7 +533,8 @@
                     <div class="row row-cols-1 g-3">
                         <div class="rt-input-group">
                             <label for="skill">Skill*</label>
-                            <input type="text" name="skill" id="skill" placeholder="Type skill..." required>
+                            <input type="text" name="skill_label" id="skill_label" placeholder="Type skill..." required>
+                            <input type="hidden" name="skill_id" id="skill_id">
                         </div>
                     </div>
                 </div>
@@ -517,6 +552,58 @@
 @endsection
 @section('script')
 <script>
+    $(document).ready(function() {
+        // Click button -> open file input
+        $('#addResumeBtn').on('click', function() {
+            $('#resumeInput').click();
+        });
+
+        // Auto submit when file selected
+        $('#resumeInput').on('change', function() {
+            let file = this.files[0];
+            if (!file) return;
+
+            let formData = new FormData();
+            formData.append('resume', file);
+
+            $.ajax({
+                url: "{{ route('user.profile.resume.upload') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                beforeSend: function() {
+                    $('#addResumeBtn').prop('disabled', true).text('Uploading...');
+                },
+                success: function(response) {
+                    // Remove old message or link
+                    $('#resumeContainer').empty();
+
+                    // Add new link
+                    let resumeLink = `
+                        <a href="/storage/${response.file_path}" 
+                        target="_blank" 
+                        class="job__tag">
+                            ${response.file_path.split('/').pop()}
+                        </a>
+                    `;
+                    $('#resumeContainer').append(resumeLink);
+                    toastr.success('Successfully uploaded your resume!', 'Resume uploaded');
+                },
+                error: function(xhr) {
+                    toastr.error("Upload failed: " + (xhr.responseJSON?.message || 'Unknown error'));
+                },
+                complete: function() {
+                    $('#addResumeBtn').prop('disabled', false).text('Add');
+                    $('#resumeInput').val("");
+                }
+            });
+        });
+    });
+
     document.addEventListener("click", (e) => {
         e = e || window.event;
         var target = e.target || e.srcElement;
@@ -661,15 +748,23 @@
             case "saveSkills":
                 var formData = new FormData();
                 formData.append('_token', "{{ csrf_token() }}");
-                formData.append('label', $('#skill').val());
+                formData.append('label', $('#skill_label').val());
+                
+                let skillId = $('#skill_id').val();
+                if (skillId) {
+                    formData.append('skill_id', skillId);
+                }
+
                 $.ajax({
                     method: "POST",
-                    url: "{{ route('user.profile.skill.store') }}",
+                    url: skillId 
+                        ? "{{ route('user.profile.skill.update') }}" // Update route
+                        : "{{ route('user.profile.skill.store') }}", // Create route
                     data: formData,
                     contentType: false,
                     processData: false,
                     success: (response) =>  {
-                        toastr.success('Successfully added a skill!', 'Profile updated');
+                        toastr.success(skillId ? 'Skill updated successfully!' : 'Successfully added a skill!', 'Profile updated');
                         $('#addSkillForm').modal('hide');
                     },
                     error: (response) => {
@@ -697,6 +792,27 @@
                 });
                 break;
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.edit-skill').forEach(function (tag) {
+            tag.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                let skillId = this.getAttribute('data-id');
+                let skillLabel = this.getAttribute('data-label');
+
+                console.log(skillId, skillLabel);
+
+                document.getElementById('skill_id').value = skillId;
+                document.getElementById('skill_label').value = skillLabel;
+            });
+        });
+
+        document.getElementById('addSkillBtn').addEventListener('click', function () {
+            document.getElementById('skill_id').value = '';
+            document.getElementById('skill_label').value = '';
+        });
     });
 
     var $uploadButton = $('#uploadButton');

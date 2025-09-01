@@ -56,9 +56,26 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->only([
+            'skill_id',
+            'label',
+        ]);
+
+        $request->validate([
+            'label' => 'required|string|max:255',
+        ]);
+        
+        $skill = Skill::findOrFail($data['skill_id']);
+        $skill->update([
+            'label' => $data['label'],
+        ]);
+
+        return response()->json([
+            'message' => 'Skill updated successfully!',
+            'skill'   => $skill,
+        ]);
     }
 
     /**

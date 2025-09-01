@@ -49,7 +49,13 @@
                         </div>
                         <div class="breadcrumb__apply d-flex gap-3 max-content">
                             <!-- <a href="#" class="rts__btn apply__btn no__fill__btn">Shortlist</a> -->
-                            <!-- <a href="#" class="rts__btn be-1 apply__btn fill__btn">Cv Download</a> -->
+                             @if ($user->resume)
+                                <a href="{{ Storage::url($user->resume->file_path) }}" 
+                                target="_blank" 
+                                class="rts__btn be-1 apply__btn fill__btn">
+                                    Cv Download
+                                </a>
+                            @endif
                         </div>             
                     </div>
                     <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
