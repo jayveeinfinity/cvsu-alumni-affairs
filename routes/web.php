@@ -84,17 +84,22 @@ Route::middleware('auth')->group(function () {
     | User Routes
     |--------------------------------------------------------------------------
     */
-    Route::prefix('user')->group(function () {
+    Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', function() {
             return redirect()->route('user.profile.index');
         });
-        Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile.index');
-        Route::get('/edit/{user_id}', [UserProfileController::class, 'edit'])->name('user.profile.edit');
-        Route::post('/edit/{user_id}', [UserProfileController::class, 'update'])->name('user.profile.update');
-        Route::post('/edit/education/store', [EducationController::class, 'store'])->name('user.profile.education.store');
-        Route::post('/edit/work-experience/store', [WorkExperienceController::class, 'store'])->name('user.profile.work_experience.store');
-        Route::post('/edit/skill/store', [SkillController::class, 'store'])->name('user.profile.skill.store');
-        Route::post('/edit/skill/update', [SkillController::class, 'update'])->name('user.profile.skill.update');
-        Route::post('/edit/resume/upload', [ResumeController::class, 'store'])  ->name('user.profile.resume.upload');
+        Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
+        Route::get('/edit/{user_id}', [UserProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/edit/{user_id}', [UserProfileController::class, 'update'])->name('profile.update');
+        Route::post('/edit/education/store', [EducationController::class, 'store'])->name('profile.education.store');
+        Route::post('/edit/work-experience/store', [WorkExperienceController::class, 'store'])->name('profile.work_experience.store');
+        Route::post('/edit/skill/store', [SkillController::class, 'store'])->name('profile.skill.store');
+        Route::post('/edit/skill/update', [SkillController::class, 'update'])->name('profile.skill.update');
+        Route::post('/edit/resume/upload', [ResumeController::class, 'store'])  ->name('profile.resume.upload');
+    });
+
+    Route::prefix('jobs')->name('jobs.')->group(function () {
+        Route::post('/{job}/view', [JobController::class, 'logView'])->name('view');
+        Route::post('/{job}/attempt', [JobController::class, 'logAttempt'])->name('attempt');
     });
 });

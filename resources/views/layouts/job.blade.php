@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="description" content="Your Ultimate Job HTML Template">
         <meta name="keywords" content="Job, Resume, Employer, Agency">
@@ -115,9 +116,16 @@
     <button type="button" class="rts__back__top" id="rts-back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
+    <!-- Sweet Alert 2 -->
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
     <!-- all plugin js -->
     <script src="/js/plugins.min.js"></script>
     <script src="/js/main.js"></script>
     </body>
+    <script>
+        window.isAuthenticated = @json($isAuthenticated);
+        window.currentUser = @json($currentUser);
+    </script>
     @yield('script')
+    @stack('scripts')
 </html>

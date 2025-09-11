@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobView;
 use App\Models\JobPosting;
 use Illuminate\Http\Request;
+use App\Models\JobApplicationAttempt;
 
 class JobController extends Controller
 {
@@ -65,5 +67,44 @@ class JobController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    
+    /**
+     * Record a job view (when user opens job detail/modal)
+     */
+    public function logView(Request $request, JobPosting $job)
+    {
+        $user = $request->user();
+
+        $lastView = JobView::where('user_id', $user->id)
+            ->where('job_id', $job->id)
+            ->latest('viewed_at')
+            ->first();
+
+        if (!$lastView || $lastView->viewed_at->diffInSeconds(now()) > 60) {
+            JobView::create([
+                'user_id' => $user->id,
+                'job_id' => $job->id,
+                'viewed_at' => now(),
+            ]);
+        }
+
+        return response()->json(['status' => 'ok']);
+    }
+
+    /**
+     * Record an application attempt (when user clicks Apply + confirms)
+     */
+    public function logAttempt(Request $request, JobPosting $job)
+    {
+        $user = $request->user();
+
+        JobApplicationAttempt::create([
+            'user_id' => $user->id,
+            'job_id' => $job->id,
+            'attempted_at' => now(),
+        ]);
+
+        return response()->json(['status' => 'ok']);
     }
 }

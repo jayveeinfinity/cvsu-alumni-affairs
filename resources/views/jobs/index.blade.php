@@ -257,7 +257,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="h6 job__title mb-3">
-                                                <a href="#" aria-label="job">
+                                                <a href="#" class="job-tag" aria-label="job" data-id="{{ $job->id }}">
                                                     {{ $job->title }}, {{ $job->company }}
                                                 </a>
                                             </div>
@@ -284,40 +284,54 @@
                         </div>
                         <div class="tab-pane fade list__style" role="tabpanel" id="list">
                             <div class="row g-30">
-                                <!-- single item -->
-                                <div class="col-lg-12">
-                                    <div class="rts__job__card__big style__gradient flex-wrap justify-content-between d-flex gap-4 align-items-center">
-                                        <div class="d-flex flex-wrap flex-md-nowrap flex-lg-wrap flex-xl-nowrap gap-4 align-items-center">
-                                            <div class="company__icon rounded-2">
-                                                <img src="assets/img/home-1/company/apple.svg" alt="">
-                                            </div>
-                                            <div class="job__meta w-100 d-flex flex-column gap-2">
-                                                <div class="d-flex justify-content-between align-items-center gap-3">
-                                                    <a href="#" class="job__title h6 mb-0">Senior UI Designer, Apple</a>
+                                @forelse($jobs as $job)
+                                    <div class="col-lg-12">
+                                        <div class="rts__job__card__big style__gradient flex-wrap justify-content-between d-flex gap-4 align-items-center">
+                                            <div class="d-flex flex-wrap flex-md-nowrap flex-lg-wrap flex-xl-nowrap gap-4 align-items-center">
+                                                <div class="company__icon rounded-2">
+                                                    <img src="assets/img/home-1/company/apple.svg" alt="">
                                                 </div>
-                                                <div class="d-flex gap-3 gap-md-4 flex-wrap mb-2">
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <i class="fas fa-map-marker-alt"></i> Newyork, USA
+                                                <div class="job__meta w-100 d-flex flex-column gap-2">
+                                                    <div class="d-flex justify-content-between align-items-center gap-3">
+                                                        <a href="#" class="job__title h6 mb-0 job-tag" data-id="{{ $job->id }}">{{ $job->title }}, {{ $job->company }}</a>
                                                     </div>
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <i class="fas fa-briefcase"></i> Full Time
+                                                    <div class="d-flex gap-3 gap-md-4 flex-wrap mb-2">
+                                                        <div class="d-flex gap-2 align-items-center">
+                                                            <i class="fas fa-map-marker-alt"></i> {{ $job->location }}
+                                                        </div>
+                                                        <div class="d-flex gap-2 align-items-center">
+                                                            <i class="fas fa-briefcase"></i> {{ $job->job_type }}
+                                                        </div>
                                                     </div>
-                                                    <div class="d-flex gap-2 align-items-center">
-                                                        <i class="far fa-clock"></i> 1 Years Ago
-                                                    </div>
-                                                </div>
-                                                <div class="job__tags d-flex flex-wrap gap-3">
-                                                    <a href="#">Creative</a>
-                                                    <a href="#">user interface</a>
-                                                    <a href="#">web ui</a>
+                                                    <p>{{ $job->job_description }}</p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="bookmark__btn"><i class="far fa-bookmark"></i></button>
+                                            <!-- <div>
+                                                <button type="button" class="bookmark__btn"><i class="far fa-bookmark"></i></button>
+                                            </div> -->
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-xl-6 col-md-6 col-lg-12">
+                                        <div class="rts__job__card h-100">
+                                            <div class="h6 job__title mb-3">
+                                                <a href="#" class="job-tag" aria-label="job" data-id="{{ $job->id }}">
+                                                    {{ $job->title }}, {{ $job->company }}
+                                                </a>
+                                            </div>
+                                            <div class="d-flex gap-3 flex-wrap mb-3">
+                                                <div class="d-flex gap-1 align-items-center">
+                                                    <i class="fas fa-map-marker-alt"></i> {{ $job->location }}
+                                                </div>
+                                                <div class="d-flex gap-1 align-items-center">
+                                                    <i class="fas fa-briefcase"></i> {{ $job->job_type }}
+                                                </div>
+                                            </div>
+                                            <p>{{ $job->job_description }}</p>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No jobs found.</p>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -369,6 +383,35 @@
         </div>
     </div>
 </section>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="jobModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Job Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="h6 job__title mb-3">
+            <span id="jobTitle"></span>, <span id="jobCompany"></span>
+        </div>
+        <div class="d-flex gap-3 flex-wrap mb-3">
+            <div class="d-flex gap-1 align-items-center">
+                <i class="fas fa-map-marker-alt"></i> <span id="jobLocation"></span>
+            </div>
+            <div class="d-flex gap-1 align-items-center">
+                <i class="fas fa-briefcase"></i> <span id="jobType"></span>
+            </div>
+        </div>
+        <p id="jobDescription"></p>
+        <a class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs apply-btn" href="javascript:void(0)" data-id="{{ $job->id }}" data-link="{{ $job->apply_link }}">
+            Apply now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 <style>
@@ -381,3 +424,130 @@
         opacity: 0.5;
     }
 </style>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // jobs from server
+    const jobs = @json($jobs).data;
+
+    // debug: how many tags exist right now?
+    const tagCount = document.querySelectorAll('.job-tag').length;
+    console.log('job-tag count:', tagCount);
+
+    // Delegated listener — works for existing and future elements
+    document.addEventListener('click', function (e) {
+        const tag = e.target.closest('.job-tag');
+        if (!tag) return; // not a job-tag click
+
+        e.preventDefault();
+        console.log('job-tag clicked:', tag.dataset.id);
+
+        const jobId = tag.dataset.id;
+        const job = jobs.find(j => String(j.id) === String(jobId));
+        if (!job) {
+            console.warn('Job not found for id', jobId);
+            return;
+        }
+
+        if(!window.isAuthenticated) {
+            Swal.fire({
+                title: 'Sign in required',
+                text: 'You need to sign in or create an account to view job details.',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Sign In',
+                cancelButtonText: 'Sign Up'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/login';
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    window.location.href = '/signup';
+                }
+            });
+            return;
+        }
+
+        // populate modal
+        document.getElementById('jobTitle').textContent = job.title ?? '';
+        document.getElementById('jobCompany').textContent = job.company ?? '';
+        document.getElementById('jobDescription').textContent = job.job_description ?? '';
+        document.getElementById('jobLocation').textContent = job.location ?? '';
+        document.getElementById('jobType').textContent = job.job_type ?? '';
+
+        // ensure bootstrap JS is available
+        if (typeof bootstrap === 'undefined') {
+            console.error('bootstrap is undefined — include bootstrap.bundle.js before this script');
+            return;
+        }
+
+        const modalEl = document.getElementById('jobModal');
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+
+        $('#jobModal').on('shown.bs.modal', function () {
+            recordJobView(jobId);
+        });
+    });
+
+    function recordJobView(jobId) {
+        $.ajax({
+            url: `/jobs/${jobId}/view`,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function() {
+                console.log("Job view recorded");
+            },
+            error: function(xhr) {
+                console.error("Error recording job view", xhr);
+            }
+        });
+    }
+
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.apply-btn');
+        if (!btn) return;
+
+        e.preventDefault();
+
+        const jobId = btn.dataset.id;
+        const applyLink = btn.dataset.link;
+
+        Swal.fire({
+            title: 'You are leaving our site',
+            text: 'You will be redirected to the external application page. Do you want to continue?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Continue to link',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // 1. Call API to log attempt
+                $.ajax({
+                    url: `/jobs/${jobId}/attempt`,
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function () {
+                        console.log('Application attempt logged');
+                        // 2. Redirect to external link
+                        window.open(applyLink, '_blank');
+                    },
+                    error: function (xhr) {
+                        console.error('Error logging attempt:', xhr);
+                        // even if API fails, still redirect
+                        window.open(applyLink, '_blank');
+                    }
+                });
+            } else {
+                // ❌ Cancel → just close Swal
+                Swal.close();
+            }
+        });
+    });
+});
+</script>
+@endpush

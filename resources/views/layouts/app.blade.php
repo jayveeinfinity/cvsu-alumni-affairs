@@ -40,5 +40,10 @@
   <script src="{{ asset('plugins/chart.js/Chart.js') }}"></script>
   <!-- Bootstrap Iconpicker JS -->
   <script src="{{ asset('plugins/fontawesome-iconpicker/js/bootstrap-iconpicker.bundle.min.js') }}"></script>
+  <script>
+      window.isAuthenticated = @json($isAuthenticated);
+      window.currentUser = @json($currentUser);
+  </script>
   @yield('script')
+  @stack('scripts')
 </html>
