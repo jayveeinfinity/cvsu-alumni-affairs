@@ -705,6 +705,7 @@
                 formData.append('position', $('#position').val());
                 formData.append('institution', $('#we_institution').val());
                 formData.append('employment_type', $('#employment_type').find(":selected").val());
+                formData.append('is_government', $('#is_government').find(":selected").val());
                 formData.append('industry_id', $('#industry').find(":selected").val());
                 formData.append('date_started', $('#we_period_of_attendance_from').val());
                 formData.append('date_ended', $('#we_period_of_attendance_to').val());

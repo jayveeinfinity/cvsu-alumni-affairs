@@ -41,6 +41,7 @@ class WorkExperienceController extends Controller
             'position' => $request->position,
             'institution' => $request->institution,
             'employment_type' => $request->employment_type,
+            'is_government' => $request->is_government,
             'industry_id' => $request->industry_id,
             'date_started' => $request->date_started,
             'date_ended' => $request->date_ended,
