@@ -5,20 +5,48 @@ namespace App\Http\Controllers;
 use App\Models\JobView;
 use App\Models\JobPosting;
 use Illuminate\Http\Request;
+use App\Services\JobPostingService;
 use App\Models\JobApplicationAttempt;
 
 class JobController extends Controller
 {
+    public function __construct(
+        protected JobPostingService $jobPostingService
+    ) {}
+    
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = JobPosting::orderBy('created_at', 'desc')->paginate(10);
+        $jobs = JobPosting::query();
 
-        // dd($jobs);
+        // Search term
+        if ($request->filled('search')) {
+            $jobs->where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('job_description', 'like', '%' . $request->search . '%')
+                ->orWhere('location', 'like', '%' . $request->search . '%');
+        }
+
+        // Experience filter
+        if ($request->has('experience')) {
+            $jobs->whereIn('experience', $request->experience);
+        }
+
+        // Job type filter
+        if ($request->has('job_type')) {
+            $jobs->whereIn('job_type', $request->job_type);
+        }
+
+        // Paginate results
+        $jobs = $jobs
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        $filters = $this->jobPostingService->getFilters();
         
-        return view('jobs.index', compact('jobs'));
+        return view('jobs.index', compact('jobs', 'filters'));
     }
 
     /**

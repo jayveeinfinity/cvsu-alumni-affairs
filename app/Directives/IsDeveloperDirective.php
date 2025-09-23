@@ -10,7 +10,7 @@ class IsDeveloperDirective
     public static function register()
     {
         Blade::if('isDev', function () {
-            return Auth::check() && Auth::user()->email === "jayveeinfinity@gmail.com";
+            return Auth::check() && Auth::user()->email === config('developer.email');
         });
     }
 }

@@ -22,16 +22,16 @@
             <div class="row g-30">
                 <div class="col-lg-5 col-xl-4">
                     <div class="job__search__section mb-40">
-                        <form action="#" class="d-flex flex-column row-30">
+                        <form method="GET" action="{{ route('jobs') }}" class="d-flex flex-column row-30">
                             <div class="search__item">
                                 <label for="search" class="mb-3 font-20 fw-medium text-dark text-capitalize">Search By Job Title</label>
                                 <div class="position-relative">
-                                    <input type="text" id="search" placeholder="Enter Type Of job" required>
+                                    <input type="text" name="search" id="searchTerm" placeholder="Enter Type Of job" value="{{ request('search') }}">
                                     <i class="fas fa-search"></i>
                                 </div>
                             </div>
                             <!-- job location -->
-                            <div class="search__item">
+                            <!-- <div class="search__item">
                                 <h6 class="mb-3 font-20 fw-medium text-dark text-capitalize">Search Location</h6>
                                 <div class="position-relative">
                                     <div class="nice-select" tabindex="0">
@@ -46,9 +46,9 @@
                                     </div>
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- job category -->
-                            <div class="search__item">
+                            <!-- <div class="search__item">
                                 <h6 class="mb-3 font-20 fw-medium text-dark text-capitalize">Search By Job category</h6>
                                 <div class="position-relative">
                                     <div class="nice-select" tabindex="0">
@@ -62,9 +62,9 @@
                                     </div>
                                     <i class="fas fa-briefcase"></i>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- job post time -->
-                            <div class="search__item">
+                            <!-- <div class="search__item">
                                 <h6 class="mb-3 font-20 fw-medium text-dark text-capitalize">Date posted</h6>
                                 <div class="position-relative">
                                     <div class="nice-select" tabindex="0">
@@ -78,81 +78,46 @@
                                     </div>
                                     <i class="fas fa-clock"></i>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- job post time -->
                             <div class="search__item">
-                                <div class="mb-3 font-20 fw-medium text-dark text-capitalize">job type</div>
-                                <div class="search__item__list" >
+                                <div class="mb-3 font-20 fw-medium text-dark text-capitalize">Job type</div>
+                                <div class="search__item__list">
+                                    @forelse ($filters['job_type'] as $key => $value)
                                     <div class="d-flex align-items-center justify-content-between list" >
                                         <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="fulltime" id="fulltime">
-                                            <label for="fulltime">Full Time</label>
+                                            <input type="checkbox" name="job_type[]" id="{{ str()->slug($key) }}" value="{{ $key }}" {{ in_array($key, (array) request('job_type')) ? 'checked' : '' }}>
+                                            <label for="{{ str()->slug($key) }}">{{ $key }}</label>
                                         </div>
-                                        <span>(130)</span>
+                                        <span>({{ $value }})</span>
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="part" id="part">
-                                            <label for="part">Part Time</label>
-                                        </div>
-                                        <span>(80)</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="temporary" id="temporary">
-                                            <label for="temporary">temporary</label>
-                                        </div>
-                                        <span>(150)</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="freelance" id="freelance">
-                                            <label for="freelance">freelance</label>
-                                        </div>
-                                        <span>(130)</span>
-                                    </div>
+                                    @empty
+
+                                    @endforelse
                                 </div>
                             </div>
 
                             <!-- experience label -->
                             <div class="search__item">
-                                <div class="mb-3 font-20 fw-medium text-dark text-capitalize">experience Label</div>
+                                <div class="mb-3 font-20 fw-medium text-dark text-capitalize">Experience</div>
                                 <div class="search__item__list" >
+                                    @forelse ($filters['experience'] as $key => $value)
+                                    <div class="d-flex align-items-center justify-content-between list">
+                                        <div class="d-flex gap-2 align-items-center checkbox">
+                                            <input type="checkbox" name="experience[]" id="{{ str()->slug($key) }}" value="{{ $key }}" {{ in_array($key, (array) request('experience')) ? 'checked' : '' }}>
+                                            <label for="{{ str()->slug($key) }}">{{ $key }}</label>
+                                        </div>
+                                        <span>({{ $value }})</span>
+                                    </div>
+                                    @empty
 
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="5year" id="5year">
-                                            <label for="5year">5 year</label>
-                                        </div>
-                                        <span>(10)</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="4year" id="4year">
-                                            <label for="4year">4 year</label>
-                                        </div>
-                                        <span>(15)</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="3year" id="3year">
-                                            <label for="3year">3 year</label>
-                                        </div>
-                                        <span>(50)</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between list">
-                                        <div class="d-flex gap-2 align-items-center checkbox">
-                                            <input type="checkbox" name="fresher" id="fresher">
-                                            <label for="fresher">fresher</label>
-                                        </div>
-                                        <span>(130)</span>
-                                    </div>
+                                    @endforelse
                                 </div>
                             </div>
 
                             <!-- salary label -->
-                            <div class="search__item">
+                            <!-- <div class="search__item">
                                 <div class="mb-3 font-20 fw-medium text-dark text-capitalize">salary offered</div>
                                 <div class="search__item__list">
 
@@ -185,7 +150,7 @@
                                         <span>(85)</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <button type="submit" class="rts__btn no__fill__btn max-content mx-auto job__search__btn font-sm" aria-label="Search">Find Job</button>
                         </form>
                     </div>
@@ -405,9 +370,9 @@
             </div>
         </div>
         <p id="jobDescription"></p>
-        <a class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs apply-btn" href="javascript:void(0)" data-id="{{ $job->id }}" data-link="{{ $job->apply_link }}">
+        <button class="w-100 mt-3 small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs apply-btn" href="javascript:void(0)">
             Apply now
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -431,9 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // jobs from server
     const jobs = @json($jobs).data;
 
-    // debug: how many tags exist right now?
     const tagCount = document.querySelectorAll('.job-tag').length;
-    console.log('job-tag count:', tagCount);
 
     // Delegated listener — works for existing and future elements
     document.addEventListener('click', function (e) {
@@ -474,6 +437,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('jobDescription').textContent = job.job_description ?? '';
         document.getElementById('jobLocation').textContent = job.location ?? '';
         document.getElementById('jobType').textContent = job.job_type ?? '';
+        const btn = e.target.closest('.apply-btn');
+        if (btn) {
+            btn.dataset.id = job.id ?? '';
+            btn.dataset.link = job.link ?? '';
+        }
 
         // ensure bootstrap JS is available
         if (typeof bootstrap === 'undefined') {
