@@ -22,6 +22,8 @@ class CreateUserProfilesTable extends Migration
             $table->string('phone_number')->nullable();
             $table->text('about')->nullable();
             $table->text('address')->nullable();
+            $table->timestamp('last_profile_update')->nullable();
+            $table->timestamp('last_reminder_sent_at')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

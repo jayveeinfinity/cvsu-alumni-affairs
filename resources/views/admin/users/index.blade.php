@@ -50,6 +50,7 @@
                                                     <th>Email</th>
                                                     <th>Phone number</th>
                                                     <th>Address</th>
+                                                    <th>Last updated</th>
                                                 </tr>
                                             </thead>
                                         @endif
@@ -60,6 +61,7 @@
                                                     <td>{{ $user->email }}</td>
                                                     <td>{!! $user->profile->phone_number ?? "<i>Not phone yet</i>" !!}</td>
                                                     <td>{!! $user->profile->address ?? "<i>Not address yet</i>" !!}</td>
+                                                    <td>{!! $user->profile->last_profile_update ?? "<i>Not yet updated</i>" !!}</td>
                                                 </tr>
                                             @empty
                                                 <p class="mb-0">No records yet.</p>

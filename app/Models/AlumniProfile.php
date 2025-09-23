@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Traits\UpdatesProfileTimestamp;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AlumniProfile extends Model
 {
-    use HasFactory;
+    use HasFactory, UpdatesProfileTimestamp;
 
     protected $table = 'alumni_profiles';
 
