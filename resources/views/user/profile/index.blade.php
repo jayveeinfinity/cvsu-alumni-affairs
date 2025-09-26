@@ -138,9 +138,11 @@
                     <div id="skill" class="mb-30">
                         <h6 class="fw-semibold mb-20">Skills</h6>
                         <div class="job__tags job__details__tags">
-                        @foreach($user->profile->skills as $skill)
-                            <a href="#" class="job__tag">{{ $skill->label }}</a>
-                        @endforeach
+                        @forelse($user->profile->skills as $skill)
+                            <a href="javascript:void(0)" class="job__tag">{{ $skill->label }}</a>
+                        @empty
+                            <p>No skills yet.</p>
+                        @endforelse
                         </div>
                     </div>
                     @endif

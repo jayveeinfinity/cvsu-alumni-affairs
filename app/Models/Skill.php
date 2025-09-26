@@ -17,4 +17,8 @@ class Skill extends Model
     {
         return $this->belongsTo(UserProfile::class);
     }
+
+    public static function isLimit($id) {
+        return self::where('user_profile_id', $id)->count() === 10;
+    }
 }

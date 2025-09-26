@@ -250,10 +250,10 @@
                 <div class="my__details tab-pane" id="experience">
                     <div class="info__field mt-5">
                         <div class="alert alert-danger pl-0 d-none" id="addWorkExperienceAlert">
-                                <ul class="mb-0" id="errorList"></ul>
-                            </div>
-                            <h6>Work Experience <button class="btn btn-sm fill__btn border-6 font-xs" data-toggle="modal" data-target="#addWorkExperienceForm" data-backdrop="static" data-keyboard="false">Add</button></h6>
-                            <div class="row g-30">
+                            <ul class="mb-0" id="errorList"></ul>
+                        </div>
+                        <h6>Work Experience <button class="btn btn-sm fill__btn border-6 font-xs" data-toggle="modal" data-target="#addWorkExperienceForm" data-backdrop="static" data-keyboard="false">Add</button></h6>
+                        <div class="row g-30">
                             @forelse($user->profile->work_experiences as $work_experience)
                                 <div class="col-lg-12">
                                     <div class="rts__job__card__big style__gradient justify-content-between d-flex gap-4 align-items-center">
@@ -275,7 +275,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="job__tags d-flex flex-wrap gap-3">
-                                                    <a>{{ Str::title($work_experience->employment_type) }}</a>
+                                                    <a href="javascript:void(0)">{{ Str::replace('_', ' ', $work_experience->employment_type) }}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -288,56 +288,58 @@
                             @empty
                                 <p>No work experience background yet. To add one, click add</p>
                             @endforelse
-                            </div>
                         </div>
                     </div>
-                    <div class="my__details tab-pane" id="skills">
-                        <div class="info__field mt-5">
-                            <div class="alert alert-danger pl-0 d-none" id="addSkillsAlert">
-                                <ul class="mb-0" id="errorList"></ul>
-                            </div>
-                            <h6>Skills <button class="btn btn-sm fill__btn border-6 font-xs"
+                </div>
+                <div class="my__details tab-pane" id="skills">
+                    <div class="info__field mt-5">
+                        <div class="alert alert-danger pl-0 d-none" id="addSkillsAlert">
+                            <ul class="mb-0" id="errorList"></ul>
+                        </div>
+                        <h6>Skills
+                            @if($user->profile->skills && count($user->profile->skills) > 10)
+                            <button class="btn btn-sm fill__btn border-6 font-xs"
                                 id="addSkillBtn"
                                 data-toggle="modal"
                                 data-target="#addSkillsForm"
                                 data-backdrop="static"
-                                data-keyboard="false">Add</button>
-                            </h6>
-                            <div class="job__tags job__details__tags">
-                                @forelse($user->profile->skills as $skill)
-                                    <a class="job__tag edit-skill"
-                                        data-id="{{ $skill->id }}"
-                                        data-label="{{ $skill->label }}"
-                                        data-toggle="modal"
-                                        data-target="#addSkillsForm"
-                                        data-backdrop="static"
-                                        data-keyboard="false">
-                                    {{ $skill->label }}</a>
-                                @empty
-                                    <p>No skills yet. To add one, click add</p>
-                                @endforelse
-                                </div>
-                            </div>
+                                data-keyboard="false">Add
+                            </button>
+                            @endif
+                        </h6>
+                        <div class="job__tags job__details__tags">
+                            @forelse($user->profile->skills as $skill)
+                                <a class="job__tag edit-skill"
+                                    data-id="{{ $skill->id }}"
+                                    data-label="{{ $skill->label }}"
+                                    data-toggle="modal"
+                                    data-target="#addSkillsForm"
+                                    data-backdrop="static"
+                                    data-keyboard="false">
+                                {{ $skill->label }}</a>
+                            @empty
+                                <p>No skills yet. To add one, click add</p>
+                            @endforelse
                         </div>
                     </div>
-                    <div class="my__details tab-pane" id="resume">
-                        <div class="info__field mt-5">
-                            <div class="alert alert-danger pl-0 d-none" id="addResumeAlert">
-                                <ul class="mb-0" id="errorList"></ul>
-                            </div>
-                            <h6>Resume <button class="btn btn-sm fill__btn border-6 font-xs" id="addResumeBtn">Add</button></h6>
-                            <input type="file" id="resumeInput" name="resume" accept="application/pdf" hidden>
-                            <div id="resumeContainer" class="job__tags job__details__tags mt-2">
-                                @if($user->resume)
-                                    <a href="{{ Storage::url($user->resume->file_path) }}" 
-                                        target="_blank" 
-                                        class="job__tag">
-                                        {{ basename($user->resume->file_path) }}
-                                    </a>
-                                @else
-                                    <p id="noResumeText">No resume uploaded yet. To upload, click Add</p>
-                                @endif
-                            </div>
+                </div>
+                <div class="my__details tab-pane" id="resume">
+                    <div class="info__field mt-5">
+                        <div class="alert alert-danger pl-0 d-none" id="addResumeAlert">
+                            <ul class="mb-0" id="errorList"></ul>
+                        </div>
+                        <h6>Resume <button class="btn btn-sm fill__btn border-6 font-xs" id="addResumeBtn">Add</button></h6>
+                        <input type="file" id="resumeInput" name="resume" accept="application/pdf" hidden>
+                        <div id="resumeContainer" class="job__tags job__details__tags mt-2">
+                            @if($user->resume)
+                                <a href="{{ Storage::url($user->resume->file_path) }}" 
+                                    target="_blank" 
+                                    class="job__tag">
+                                    {{ basename($user->resume->file_path) }}
+                                </a>
+                            @else
+                                <p id="noResumeText">No resume uploaded yet. To upload, click Add</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -525,7 +527,7 @@
             </div>
             <div class="modal-body py-3 px-4 pb-5">
                 <div class="alert alert-danger pl-0 d-none" id="addSkillsAlert">
-                    <ul class="mb-0" id="weErrorList"></ul>
+                    <ul class="mb-0" id="skillErrorList"></ul>
                 </div>
                 <div class="info__field">
                     <div class="row row-cols-1 g-3">
@@ -718,7 +720,9 @@
                     processData: false,
                     success: (response) =>  {
                         toastr.success('Successfully added a work experience!', 'Profile updated');
-                        $('#addWorkExperienceForm').modal('hide');
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 500);
                     },
                     error: (response) => {
                         $('#weErrorList').empty();
@@ -764,11 +768,13 @@
                     processData: false,
                     success: (response) =>  {
                         toastr.success(skillId ? 'Skill updated successfully!' : 'Successfully added a skill!', 'Profile updated');
-                        $('#addSkillForm').modal('hide');
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 500);
                     },
                     error: (response) => {
-                        $('#weErrorList').empty();
-
+                        $('#skillErrorList').empty();
+                        
                         if (response.responseJSON) {
                             const errors = response.responseJSON.errors;
                             for (const field in errors) {
@@ -776,13 +782,13 @@
                                     const errorMessages = errors[field];
                                     errorMessages.forEach(function(message) {
                                         const listItem = $('<li></li>').text(`${message}`);
-                                        $('#weErrorList').append(listItem);
+                                        $('#skillErrorList').append(listItem);
                                     });
                                 }
                             }
 
-                            if ($('#addSkillAlert').hasClass("d-none")) {
-                                $('#addSkillAlert').removeClass("d-none");
+                            if ($('#addSkillsAlert').hasClass("d-none")) {
+                                $('#addSkillsAlert').removeClass("d-none");
                             }
                         } else {
                             toastr.error('An unexpected error occurred.', 'Something went wrong...');
