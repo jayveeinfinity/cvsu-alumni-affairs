@@ -36,7 +36,7 @@ class WorkExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        $work_experience = WorkExperience::create([
+        WorkExperience::create([
             'user_profile_id' => auth()->user()->profile->id,
             'position' => $request->position,
             'institution' => $request->institution,

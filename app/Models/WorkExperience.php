@@ -13,7 +13,7 @@ class WorkExperience extends Model
     protected $table = 'work_experiences';
 
     protected $fillable = [
-        'user_profile_id', 'position', 'institution', 'employment_type', 'industry_id', 'date_started', 'date_ended', 'about'
+        'user_profile_id', 'position', 'institution', 'employment_type', 'is_government', 'industry_id', 'date_started', 'date_ended', 'about'
     ];
 
     public function userProfile()

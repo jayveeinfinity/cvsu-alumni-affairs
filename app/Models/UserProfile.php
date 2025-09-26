@@ -27,12 +27,16 @@ class UserProfile extends Model
 
     public function educations()
     {
-        return $this->hasMany(Education::class)->orderBy('date_started', 'DESC');
+        return $this->hasMany(Education::class)
+            ->orderByRaw('date_ended IS NULL DESC')
+            ->orderBy('date_started', 'DESC');
     }
 
     public function work_experiences()
     {
-        return $this->hasMany(WorkExperience::class)->orderBy('date_started', 'DESC');
+        return $this->hasMany(WorkExperience::class)
+            ->orderByRaw('date_ended IS NULL DESC')
+            ->orderBy('date_started', 'DESC');
     }
 
     public function work_experiences_default()

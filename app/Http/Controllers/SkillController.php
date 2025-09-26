@@ -29,8 +29,15 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        $skill = Skill::create([
-            'user_profile_id' => auth()->user()->profile->id,
+        $user_profile_id = auth()->user()->profile->id;
+        $isLimit = Skill::isLimit($user_profile_id);
+
+        if($isLimit) {
+            return response()->json('error', Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        Skill::create([
+            'user_profile_id' => $user_profile_id,
             'label' => $request->label,
         ]);
 
