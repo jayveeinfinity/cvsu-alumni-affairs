@@ -52,7 +52,7 @@
         <!-- right side -->
         <div class="hidden lg:block w-1/2 flex flex-col">
             <div class="flex h-full justify-center items-center space-y-8 bg-[#F6FFF1]">
-                <div class="text-center rounded-3xl px-72">
+                <div class="text-center rounded-3xl px-30">
                     <div class="py-5 px-10 bg-white rounded-2xl shadow-xl z-20 border border-gray-2 00">
                         <div>
                             <h1 class="text-2xl font-medium text-center mb-2 mt-3">Accessing the CvSU - Office of Alumni Affairs System

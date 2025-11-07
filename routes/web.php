@@ -15,6 +15,7 @@ use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobPostingController;
 use App\Http\Controllers\Admin\AlumniProfileController;
+use App\Http\Controllers\AnnouncementController;
 
 Route::get('/', function () {
     return view('landing');
@@ -71,6 +72,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::get('/industries', [IndustryController::class, 'index'])->name('admin.industries');
         Route::post('/industries', [IndustryController::class, 'store'])->name('admin.industries.store');
+        Route::get('/announcements', [AnnouncementController::class, 'index'])->name('admin.announcements.index');
+        Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show'])->name('admin.announcements.show');
+        Route::post('/announcements', [AnnouncementController::class, 'store'])->name('admin.announcements.store');
+        Route::put('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('admin.announcements.update');
         Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports.index');
 
         Route::post('/alumni-profiles/send-email/{id}', [AlumniProfileController::class, 'send'])->name('admin.alumni-profiles.send-email');

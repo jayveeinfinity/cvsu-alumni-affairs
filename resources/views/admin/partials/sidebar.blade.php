@@ -75,6 +75,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('admin.announcements.index') }}" class="nav-link" data-state="announcements">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Announcements
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('admin.reports.index') }}" class="nav-link" data-state="reports">
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
