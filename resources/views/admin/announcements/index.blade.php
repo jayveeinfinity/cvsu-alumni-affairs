@@ -47,8 +47,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Label</th>
-                                                    <th>Slug</th>
+                                                    <th>Title</th>
+                                                    <th>Content</th>
+                                                    <th>Published at</th>
+                                                    <th>Active</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -57,8 +59,31 @@
                                             @forelse ($announcements as $announcement)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $announcement->label }}</td>
-                                                    <td>{{ $announcement->slug }}</td>
+                                                    <td>
+                                                        @if($announcement->cover)
+                                                            <img src="{{ asset($announcement->cover) }}" alt="{{ $announcement->title }}" class="img-circle img-size-32 mr-2">
+                                                        @endif
+                                                        {{ $announcement->title }}
+                                                    </td>
+                                                    <td>{{ $announcement->content }}</td>
+                                                    <td>
+                                                        <span class="badge badge-secondary">{{ $announcement->published_at ?? 'No expiration' }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                id="is_active_{{ $announcement->id }}"
+                                                                name="is_active_{{ $announcement->id }}"
+                                                                data-id="{{ $announcement->id }}"
+                                                                {{ $announcement->is_active === 1 ? 'checked' : '' }}>
+                                                                <label class="custom-control-label"
+                                                                    for="is_active_{{ $announcement->id }}"
+                                                                    {{ $announcement->is_active === 1 ? 'Active' : 'Inactive' }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td></td>
                                                 </tr>
                                             @empty
@@ -115,10 +140,13 @@
 
                         <!-- Image -->
                         <div class="form-group">
-                            <label for="image">Upload Image (optional)</label>
+                            <label for="cover">Upload Image (optional)</label>
                             <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
-                            <label class="custom-file-label" for="image">Choose file</label>
+                                <input type="file" class="custom-file-input" id="cover" name="cover" accept="image/*">
+                                <label class="custom-file-label" for="cover">Choose file</label>
+                            </div>
+                            <div class="mt-2" id="imagePreviewContainer" style="display:none;">
+                                <img id="imagePreview" src="" alt="Image Preview" class="img-fluid rounded border" style="max-height: 200px;">
                             </div>
                         </div>
 
@@ -131,8 +159,8 @@
                         <!-- Active Toggle -->
                         <div class="form-group">
                             <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" checked>
-                            <label class="custom-control-label" for="is_active">Active</label>
+                                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" checked>
+                                <label class="custom-control-label" for="is_active">Active</label>
                             </div>
                         </div>
                     </div>
@@ -152,6 +180,28 @@
     const loadingSpinner = document.querySelector('[data-loading="import"]');
     let id = null;
 
+    $('#cover').on('change', function (event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            // Show file name on label
+            $(this).next('.custom-file-label').text(file.name);
+
+            // Generate image preview
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+                $('#imagePreviewContainer').show();
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Reset if no file
+            $(this).next('.custom-file-label').text('Choose file');
+            $('#imagePreviewContainer').hide();
+            $('#imagePreview').attr('src', '');
+        }
+    });
+
     document.addEventListener("click", (e) => {
         e = e || window.event;
         var target = e.target || e.srcElement;
@@ -159,7 +209,18 @@
             case "addAnnouncement":
                 var formData = new FormData();
                 formData.append('_token', "{{ csrf_token() }}");
-                formData.append('label', $('#label').val());
+                formData.append('title', $('#title').val());
+                formData.append('content', $('#content').val());
+                const image = $('#image').val();
+                if (image) {
+                    formData.append('image', $('#image')[0].files[0]);
+                }
+                const publishedAt = $('#published_at').val();
+                if (publishedAt) {
+                    formData.append('published_at', publishedAt);
+                }
+                const isActive = $('#is_active').is(':checked') ? 1 : 0;
+                formData.append('is_active', isActive);
                 $.ajax({
                     type: "POST",
                     url: "{{ route('admin.announcements.store') }}",

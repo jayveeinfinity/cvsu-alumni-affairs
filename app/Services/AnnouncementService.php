@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Storage;
 
 class AnnouncementService
 {
+    public function getList() {
+        return Announcement::orderBy('published_at')->get();
+    }
+
     /**
      * Store a new announcement.
      */

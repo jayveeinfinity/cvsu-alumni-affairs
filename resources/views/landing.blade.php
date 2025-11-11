@@ -878,60 +878,30 @@
                 </div>
             </div>
             <div class="row justify-content-center justify-content-lg-start g-30">
-                <div class="col-lg-6 col-xl-4 col-md-10">
-                    <div class="rts__single__blog">
-                        <a href="blog-details.html" class="blog__img">
-                            <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/451444351_1150521299730211_8604375545946050799_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHkR9_DwoAB-V9_KWnPfUG4jv-xJ752ZiaO_7EnvnZmJq3XnCtNYBo2FVAgW6162UqrBYoO4STrlnIIp5dAZD_T&_nc_ohc=9N9xQV-OELwQ7kNvgE2mLuk&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=AM_-pIYgxkF21pGKkmOrP02&oh=00_AYCCfU1NYwL6d6mT563CLvoDjw9bZhpxxkYI47bppxWe9Q&oe=66FA94AB" class="mb-2" alt="blog">
-                        </a>
-                        <div class="blog__meta">
-                            <div class="blog__meta__info d-flex gap-3 my-3">
-                                <span class="d-flex gap-1 align-items-center">
-                                    <img class="svg" src="/storage/img/icon/calender.svg" alt="">
-                                    16 July, 2024</span>
-                                <a href="#" class="d-flex gap-1 align-items-center">
-                                    <img src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-1/304883224_748825179899827_2176281368331495617_n.jpg?stp=cp0_dst-jpg_s40x40&_nc_cat=111&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeGmpvP9IX-v4qKf2tW6W_MPRH5q1Tvd1mZEfmrVO93WZnNDgsQkpS9pxdFCyOFRa0USi2DuedpnmnfwBQ4iMY13&_nc_ohc=qSEReyj2nHUQ7kNvgF6Ab-f&_nc_ht=scontent.fmnl13-2.fna&oh=00_AYCpLaFVM3cWM4PHPD7W2uTjScIljIGD9DfLoyOQ7pYHtw&oe=66FA7840" alt="" style="height: 16px !important;"> CvSU Office of the Alumni Affairs</a>
-                            </div>
-                            <a href="blog-details.html" class="h6 fw-semibold">
-                            CFW - BATCH 8
+                @forelse($announcements as $announcement)
+                    <div class="col-lg-6 col-xl-4 col-md-10">
+                        <div class="rts__single__blog">
+                            <a href="blog-details.html" class="blog__img">
+                                <img src="{{ asset($announcement->cover) }}" class="mb-2 object-fit-cover" alt="blog">
                             </a>
-                            <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fas fa-arrow-right"></i></a>
+                            <div class="blog__meta">
+                                <div class="blog__meta__info d-flex gap-3 my-3">
+                                    <span class="d-flex gap-1 align-items-center">
+                                        <img class="svg" src="/storage/img/icon/calender.svg" alt="">
+                                        {{ $announcement->created_at }}</span>
+                                    <a href="#" class="d-flex gap-1 align-items-center">
+                                        <img src="{{ asset($announcement->cover) }}" alt="" style="height: 16px !important;"> CvSU Office of the Alumni Affairs</a>
+                                </div>
+                                <a href="blog-details.html" class="h6 fw-semibold">
+                                    {{ $announcement->tile }}
+                                </a>
+                                <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-xl-4 col-md-10">
-                    <div class="rts__single__blog">
-                        <a href="blog-details.html" class="blog__img">
-                            <img src="/storage/img/home-1/blog/2.webp" class="mb-2" alt="blog">
-                        </a>
-                        <div class="blog__meta">
-                            <div class="blog__meta__info d-flex gap-3 my-3">
-                                <span class="d-flex gap-1 align-items-center"> <img class="svg" src="/storage/img/icon/calender.svg" alt=""> 20 March, 2022</span>
-                                <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="/storage/img/icon/user.svg" alt=""> Jon Adom</a>
-                            </div>
-                            <a href="blog-details.html" class="h6 fw-semibold">
-                                Start an online Job and work from home
-                            </a>
-                            <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4 col-md-10">
-                    <div class="rts__single__blog">
-                        <a href="blog-details.html" class="blog__img">
-                            <img src="/storage/img/home-1/blog/3.webp" class="mb-2" alt="blog">
-                        </a>
-                        <div class="blog__meta">
-                            <div class="blog__meta__info d-flex gap-3 my-3">
-                                <span class="d-flex gap-1 align-items-center"> <img class="svg" src="/storage/img/icon/calender.svg" alt=""> 20 March, 2022</span>
-                                <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="/storage/img/icon/user.svg" alt=""> Jon Adom</a>
-                            </div>
-                            <a href="blog-details.html" class="h6 fw-semibold">
-                                Insider Strategies for Success on Job Websites
-                            </a>
-                            <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <span></span>
+                @endforelse
             </div>
         </div>
     </div>

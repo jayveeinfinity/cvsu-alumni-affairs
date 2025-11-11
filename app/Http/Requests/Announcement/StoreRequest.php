@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
         return [
             'title'        => 'required|string|max:255',
             'content'      => 'required|string',
-            'image'        => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'cover'        => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'published_at' => 'nullable|date',
             'is_active'    => 'nullable|boolean',
         ];

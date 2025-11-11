@@ -16,10 +16,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobPostingController;
 use App\Http\Controllers\Admin\AlumniProfileController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\LandingController;
 
-Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/signin', function () {
     return view('auth.signin');
 })->name('signin');

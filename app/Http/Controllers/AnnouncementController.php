@@ -21,7 +21,7 @@ class AnnouncementController extends Controller
     }
 
     public function index(Request $request) {
-        $announcements = Announcement::orderBy('label')->paginate(20);
+        $announcements = Announcement::orderBy('created_at')->paginate(20);
 
         $links = new CustomPaginationPresenter($announcements);
 
