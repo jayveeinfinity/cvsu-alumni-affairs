@@ -59,7 +59,7 @@
                 <div class="my__details tab-pane active" id="info">
                     <div class="info__top">
                         <div class="author__image">
-                            <img src="/storage/images/avatars/default.png" alt="avatar" style="height: 200px; width: 200px;">
+                            <img src="{{ config('r2.endpoint') }}/images/avatars/default.png" alt="avatar" style="height: 200px; width: 200px;">
                         </div>
                         <div class="select__image">
                             <label for="file" class="file-upload__label" id="uploadButton">Upload New Photo</label>
@@ -584,7 +584,7 @@
 
                     // Add new link
                     let resumeLink = `
-                        <a href="/storage/${response.file_path}" 
+                        <a href="{{ config('r2.endpoint') }}/${response.file_path}" 
                         target="_blank" 
                         class="job__tag">
                             ${response.file_path.split('/').pop()}

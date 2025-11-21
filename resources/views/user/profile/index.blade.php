@@ -10,7 +10,7 @@
                         <div class="rts__job__card__big bg-transparent p-0 position-relative z-1 flex-wrap justify-content-between d-flex gap-4 align-items-center">
                             <div class="d-flex gap-4 gap-md-5 align-items-center flex-md-row flex-column mx-auto mx-md-0">
                                 <div class="author__icon rounded-2">
-                                    <img src="/storage/images/avatars/default.png" alt="">
+                                    <img src="{{ config('r2.endpoint') }}/images/avatars/default.png" alt="">
                                 </div>
                                 <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
                                     <div>

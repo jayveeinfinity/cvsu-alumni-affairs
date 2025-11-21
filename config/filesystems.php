@@ -57,6 +57,16 @@ return [
             'throw' => false,
         ],
 
+        'r2' => [
+            'driver' => 's3',
+            'key' => env('CF_R2_KEY'),
+            'secret' => env('CF_R2_SECRET'),
+            'region' => 'auto',
+            'bucket' => env('CF_R2_BUCKET'),
+            'endpoint' => env('CF_R2_ENDPOINT'),
+            'use_path_style_endpoint' => true,
+        ],
+
     ],
 
     /*

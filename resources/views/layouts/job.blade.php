@@ -70,7 +70,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header p-0 mb-5 mt-4">
             <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
-                <img src="/storage/images/logo-alt.png" alt="logo">
+                <img src="{{ config('r2.endpoint') }}/images/logo-alt.png" alt="logo">
             </a> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>

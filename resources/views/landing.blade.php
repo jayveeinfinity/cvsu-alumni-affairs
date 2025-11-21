@@ -19,12 +19,12 @@
 <!-- Features Section -->
 <!-- banner area -->
 <section class="rts__banner home__one__banner pt-260">
-    <div class="rts__banner__background">
+    <div class="rts__banner__background" style="background-image: url('{{ config('r2.endpoint') }}images/backgrounds/header__background.png');">
         <div class="shape__home__one __first d-none d-lg-block">
-            <img src="/storage/images/misc/banner-shape.svg" alt="">
+            <img src="{{ config('r2.endpoint') }}/images/misc/banner-shape.svg" alt="">
         </div>
         <div class="shape__home__one __second d-none d-lg-block">
-            <img src="/storage/images/misc/banner-shape-2.svg" alt="">
+            <img src="{{ config('r2.endpoint') }}/images/misc/banner-shape-2.svg" alt="">
         </div>
         <div class="shape__home__one __third">  
         </div>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="rts__banner__image position-relative">
                     <figure class="banner__image">
-                        <img src="/storage/images/misc/image_2x.webp" alt="banner">
+                        <img src="{{ config('r2.endpoint') }}/images/misc/image_2x.webp" alt="banner">
                     </figure>
                     <div class="banner__image__shape">
                         <div class="facebook">
@@ -105,7 +105,7 @@
             <div class="col-lg-4 col-md-10 wow animated fadeInUp" data-wow-delay=".1s">
                 <div class="rts__workprocess__box">
                     <div class="rts__icon">
-                        <img src="/storage/img/home-1/process/icon-1.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/process/icon-1.svg" alt="">
                     </div>
                     <span class="process__title h6 d-block">Create a Free Account</span>
                     <p>Consectetur adipisicing elit. Possimus 
@@ -119,7 +119,7 @@
             <div class="col-lg-4 col-md-10 wow animated fadeInUp" data-wow-delay=".2s">
                 <div class="rts__workprocess__box">
                     <div class="rts__icon">
-                        <img src="/storage/img/home-1/process/icon-2.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/process/icon-2.svg" alt="">
                     </div>
                     <span class="process__title h6 d-block">Make Your Resume Amazing</span>
                     <p>Consectetur adipisicing elit. Possimus 
@@ -133,7 +133,7 @@
             <div class="col-lg-4 col-md-10 wow animated fadeInUp" data-wow-delay=".3s">
                 <div class="rts__workprocess__box">
                     <div class="rts__icon">
-                        <img src="/storage/img/home-1/process/icon-3.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/process/icon-3.svg" alt="">
                     </div>
                     <span class="process__title h6 d-block">Apply  job</span>
                     <p>Consectetur adipisicing elit. Possimus 
@@ -192,56 +192,56 @@
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/b51.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/b51.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/image1.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/image1.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/image2.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/image2.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/image3.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/image3.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/image4.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/image4.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/image5.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/image5.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/image1.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/image1.svg" alt="">
                     </a>
                 </div>
             </div>
             <div class="swiper-slide">
                 <div class="brand__item">
                     <a href="#" class="brand__item__link" aria-label="brand">
-                        <img src="/storage/img/home-1/brand/linkedin-logo-png-20321.svg" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/brand/linkedin-logo-png-20321.svg" alt="">
                     </a>
                 </div>
             </div>
@@ -315,7 +315,7 @@
     <div class="swiper-slide">
         <div class="single__cat d-flex gap-4">
             <div class="single__cat__icon color-1">
-                <img src="/storage/img/home-1/cat/1.svg" alt="">
+                <img src="{{ config('r2.endpoint') }}/img/home-1/cat/1.svg" alt="">
             </div>
             <div class="single__cat__link d-flex flex-column">
                 <a href="job-list-1.html" aria-label="cat__label">Development</a>
@@ -327,7 +327,7 @@
     <div class="swiper-slide">
         <div class="single__cat d-flex gap-4">
             <div class="single__cat__icon color-2">
-                <img src="/storage/img/home-1/cat/2.svg" alt="">
+                <img src="{{ config('r2.endpoint') }}/img/home-1/cat/2.svg" alt="">
             </div>
             <div class="single__cat__link d-flex flex-column">
                 <a href="job-list-1.html" aria-label="cat__label">Design &amp; arts</a>
@@ -339,7 +339,7 @@
     <div class="swiper-slide">
         <div class="single__cat d-flex gap-4">
             <div class="single__cat__icon color-3">
-                <img src="/storage/img/home-1/cat/3.svg" alt="">
+                <img src="{{ config('r2.endpoint') }}/img/home-1/cat/3.svg" alt="">
             </div>
             <div class="single__cat__link d-flex flex-column">
                 <a href="job-list-1.html" aria-label="cat__label">Accounting</a>
@@ -351,7 +351,7 @@
     <div class="swiper-slide">
         <div class="single__cat d-flex gap-4">
             <div class="single__cat__icon color-4">
-                <img src="/storage/img/home-1/cat/4.svg" alt="">
+                <img src="{{ config('r2.endpoint') }}/img/home-1/cat/4.svg" alt="">
             </div>
             <div class="single__cat__link d-flex flex-column">
                 <a href="job-list-1.html" aria-label="cat__label">Marketting</a>
@@ -384,7 +384,7 @@
                 <div class="rts__job__card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="company__icon">
-                            <img src="/storage/img/home-1/company/apple.svg" alt="">
+                            <img src="{{ config('r2.endpoint') }}/img/home-1/company/apple.svg" alt="">
                         </div>
                         <div class="featured__option">
                             <span>Featured</span>
@@ -419,7 +419,7 @@
                 <div class="rts__job__card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="company__icon">
-                            <img src="/storage/img/home-1/company/google.svg" alt="">
+                            <img src="{{ config('r2.endpoint') }}/img/home-1/company/google.svg" alt="">
                         </div>
                         <div class="featured__option">
                             
@@ -454,7 +454,7 @@
                 <div class="rts__job__card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="company__icon">
-                            <img src="/storage/img/home-1/company/microsoft.svg" alt="">
+                            <img src="{{ config('r2.endpoint') }}/img/home-1/company/microsoft.svg" alt="">
                         </div>
                         <div class="featured__option">
                             
@@ -489,7 +489,7 @@
                 <div class="rts__job__card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="company__icon">
-                            <img src="/storage/img/home-1/company/upwork.svg" alt="">
+                            <img src="{{ config('r2.endpoint') }}/img/home-1/company/upwork.svg" alt="">
                         </div>
                         <div class="featured__option">
                             <span>Upcoming</span>
@@ -524,7 +524,7 @@
                 <div class="rts__job__card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="company__icon">
-                            <img src="/storage/img/home-1/company/facebook.svg" alt="">
+                            <img src="{{ config('r2.endpoint') }}/img/home-1/company/facebook.svg" alt="">
                         </div>
                         <div class="featured__option">
                             
@@ -559,7 +559,7 @@
                 <div class="rts__job__card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="company__icon">
-                            <img src="/storage/img/home-1/company/in.svg" alt="">
+                            <img src="{{ config('r2.endpoint') }}/img/home-1/company/in.svg" alt="">
                         </div>
                         <div class="featured__option">
                             <span>Featured</span>
@@ -600,7 +600,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-5">
                     <div class="rts__image__section">
-                        <img src="/storage/img/home-1/we-are/image.webp"  alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/we-are/image.webp"  alt="">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -668,12 +668,12 @@
                             <div class="swiper-slide">
                                 <div class="rts__single__testimonial text-center">
                                     <div class="rts__quote mb-40">
-                                        <img class="opacity-50" src="/storage/img/icon/quote.svg" alt="">
+                                        <img class="opacity-50" src="{{ config('r2.endpoint') }}/img/icon/quote.svg" alt="">
                                     </div>
                                     <div class="testimonial__text h6    ">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</div>
                                     <div class="d-flex align-items-center justify-content-center mx-auto gap-3 pt-40 max-content">
                                         <div class="author__image">
-                                            <img src="/storage/img/home-1/testimonial/author.jpg" alt="">
+                                            <img src="{{ config('r2.endpoint') }}/img/home-1/testimonial/author.jpg" alt="">
                                         </div>
                                         <div class="author__content text-start">
                                             <span class="h6">Alexander Joy</span>
@@ -685,12 +685,12 @@
                             <div class="swiper-slide">
                                 <div class="rts__single__testimonial text-center">
                                     <div class="rts__quote mb-40">
-                                        <img class="opacity-50" src="/storage/img/icon/quote.svg" alt="">
+                                        <img class="opacity-50" src="{{ config('r2.endpoint') }}/img/icon/quote.svg" alt="">
                                     </div>
                                     <div class="testimonial__text h6    ">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</div>
                                     <div class="d-flex align-items-center justify-content-center mx-auto gap-3 pt-40 max-content">
                                         <div class="author__image">
-                                            <img src="/storage/img/home-1/testimonial/author.jpg" alt="">
+                                            <img src="{{ config('r2.endpoint') }}/img/home-1/testimonial/author.jpg" alt="">
                                         </div>
                                         <div class="author__content text-start">
                                             <span class="h6">Alexander Joy</span>
@@ -882,15 +882,15 @@
                     <div class="col-lg-6 col-xl-4 col-md-10">
                         <div class="rts__single__blog">
                             <a href="blog-details.html" class="blog__img">
-                                <img src="{{ asset($announcement->cover) }}" class="mb-2 object-fit-cover" alt="blog">
+                                <img src="{{ config('r2.endpoint') . ($announcement->cover ?? '/images/announcements/default-cover.png') }}" class="mb-2 object-fit-cover" alt="{{ $announcement->title }}-cover">
                             </a>
                             <div class="blog__meta">
                                 <div class="blog__meta__info d-flex gap-3 my-3">
                                     <span class="d-flex gap-1 align-items-center">
-                                        <img class="svg" src="/storage/img/icon/calender.svg" alt="">
+                                        <img class="svg" src="{{ config('r2.endpoint') }}/img/icon/calender.svg" alt="">
                                         {{ $announcement->created_at }}</span>
                                     <a href="#" class="d-flex gap-1 align-items-center">
-                                        <img src="{{ asset($announcement->cover) }}" alt="" style="height: 16px !important;"> CvSU Office of the Alumni Affairs</a>
+                                        <img src="{{ config('r2.endpoint') . ($announcement->cover ?? '/images/announcements/default-cover.png') }}" alt="{{ $announcement->title }}-cover" style="height: 16px !important;"> CvSU Office of the Alumni Affairs</a>
                                 </div>
                                 <a href="blog-details.html" class="h6 fw-semibold">
                                     {{ $announcement->tile }}
@@ -913,11 +913,11 @@
         <div class="row">
             <div class="rts__appcenter">
                 <div class="rts__appcenter__shape">
-                    <img src="/storage/img/home-1/app/shape.png" alt="">
+                    <img src="{{ config('r2.endpoint') }}/img/home-1/app/shape.png" alt="">
                 </div>
                 <div class="rts__appcenter__content d-flex flex-wrap flex-xl-nowrap align-items-center justify-content-between justify-content-lg-center">
                     <div class="content__left align-items-end d-flex position-relative top-15px">
-                        <img src="/storage/img/home-1/app/app_screen.png" alt="">
+                        <img src="{{ config('r2.endpoint') }}/img/home-1/app/app_screen.png" alt="">
                     </div>
                     <div class="content__right text-white text-center text-xl-start max-630">
                         <h3 class="l--1 mb-4 text-white wow animated fadeInUp" data-wow-delay=".1s ">Download The app Free!</h3>
@@ -925,12 +925,12 @@
                         <div class="d-flex gap-3 justify-content-center justify-content-xl-start flex-wrap mt-40 wow animated fadeInUp" data-wow-delay=".3s">
                             <div class="link">
                                 <a href="https://appstore.com" target="_blank" title="app store">
-                                    <img src="/storage/img/home-1/app/app-store.svg" alt="">
+                                    <img src="{{ config('r2.endpoint') }}/img/home-1/app/app-store.svg" alt="">
                                 </a>
                             </div>
                             <div class="link">
                                 <a href="https://google.com" target="_blank" title="play store">
-                                    <img src="/storage/img/home-1/app/play-store.svg" alt="">
+                                    <img src="{{ config('r2.endpoint') }}/img/home-1/app/play-store.svg" alt="">
                                 </a>
                             </div>
                         </div>

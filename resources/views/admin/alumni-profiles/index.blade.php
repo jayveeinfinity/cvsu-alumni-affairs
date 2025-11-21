@@ -5,7 +5,7 @@
 @endsection
 
 @section('main-content-header')
-<div class="content-header" style="background-image: url('/storage/images/backgrounds/bg-alumni.webp'); background-size: cover; background-position: 100% 60%; background-repeat: no-repeat;">
+<div class="content-header" style="background-image: url('{{ config('r2.endpoint') }}/images/backgrounds/bg-alumni.webp'); background-size: cover; background-position: 100% 60%; background-repeat: no-repeat;">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">

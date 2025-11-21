@@ -16,7 +16,7 @@
                                     <tr>
                                         <td align="center" style="padding:40px 0 30px 0;background:#408c40">
                                             <a href="https://cvsu.edu.ph" target="_blank">
-                                                <img src="http://library.cvsu.edu.ph/landing/storage/images/CvSU-logo.original.png" width="64" style="height:auto;display:block" alt="CvSU logo">
+                                                <img src="{{ config('r2.endpoint') }}/images/CvSU-logo.original.png" width="64" style="height:auto;display:block" alt="CvSU logo">
                                             </a>
                                         </td>
                                     </tr>
@@ -67,7 +67,7 @@
                                                                     <tr>
                                                                         <td style="padding:0 0 0 10px;width:38px">
                                                                             <a href="https://cvsu.edu.ph/" style="color:#ffffff" target="_blank">
-                                                                                <img src="http://library.cvsu.edu.ph/landing/storage/images/CvSU-logo.original.png" alt="CvSU logo" width="48" style="height:auto;display:block;border:0">
+                                                                                <img src="{{ config('r2.endpoint') }}/images/CvSU-logo.original.png" alt="CvSU logo" width="48" style="height:auto;display:block;border:0">
                                                                             </a>
                                                                         </td>
                                                                     </tr>

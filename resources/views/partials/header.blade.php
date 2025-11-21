@@ -6,7 +6,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="rts__logo">
                         <a href="/">
-                            <img class="logo__image" src="/images/logo-alt.png" width="400" height="40" alt="logo">
+                            <img class="logo__image" src="{{ config('r2.endpoint') }}/images/logo-alt.png" width="400" height="40" alt="logo">
                         </a>
                     </div>
                     <div class="rts__menu d-flex gap-5 gap-lg-4 gap-xl-5 align-items-center">

@@ -38,7 +38,7 @@
                             <div class="my__details" id="info">
                                 <!-- <div class="info__top mt-0">
                                     <div class="author__image">
-                                        <img  src="/storage/images/avatars/default.png" alt="">
+                                        <img  src="{{ config('r2.endpoint') }}/images/avatars/default.png" alt="">
                                     </div>
                                     <div class="select__image">
                                         <label for="file" class="file-upload__label">Upload New Photo</label>
