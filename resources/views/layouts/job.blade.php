@@ -20,7 +20,7 @@
         <meta name="twitter:title" content="Your Ultimate Job HTML Template">
         <meta name="twitter:description" content="Your Ultimate Job HTML Template"> -->
         <!-- fabicon -->
-        <link rel="x icon" type="img/png" href="/images/CvSU-logo-16x16.webp">
+        <link rel="x icon" type="img/png" href="{{ config('r2.endpoint') }}//images/CvSU-logo-16x16.webp">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">

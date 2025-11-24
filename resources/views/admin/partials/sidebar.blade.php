@@ -11,7 +11,7 @@
 <aside class="main-sidebar sidebar-light-success elevation-1">
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
-      <img src="/images/CvSU-logo-64x64.webp" alt="CvSU Logo" class="brand-image" style="opacity: .8">
+      <img src="{{ config('r2.endpoint') }}/images/CvSU-logo-64x64.webp" alt="CvSU Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Office of Alumni Affairs</span>
     </a>
 

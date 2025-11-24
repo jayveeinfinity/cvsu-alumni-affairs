@@ -4,7 +4,7 @@
             <div class="footer__wrapper d-flex flex-wrap flex-column flex-sm-row gap-4 gap-md-0 gap-sm-3 justify-content-between pt-60 pb-60">
                 <div class="rts__footer__widget max-320">
                     <a href="index.html" class="footer__logo" aria-label="logo">
-                        <img src="/images/logo-alt-green.png" width="400" alt="logo">
+                        <img src="{{ config('r2.endpoint') }}/images/logo-alt-green.png" width="400" alt="logo">
                     </a>
                     <p class="mt-4">Whether you're an experienced professional or a fresh graduate eager to dive into the workforce, we have something for everyone.
                     </p>
@@ -34,7 +34,7 @@
                             <i class="fab fa-facebook"></i>
                         </a>
                         <a target="_blank" href="https://cvsu.edu.ph/alumniaffairs/"  aria-label="cvsu">
-                            <!-- <i class="fab fa-instagram"></i> --> <img src="/images/CvSU-logo-64x64.webp" style="height: 24px;">
+                            <!-- <i class="fab fa-instagram"></i> --> <img src="{{ config('r2.endpoint') }}/images/CvSU-logo-64x64.webp" style="height: 24px;">
                         </a>
                         <!-- <a target="_blank" href="https://linkedin.com"  aria-label="linkedin">
                             <i class="fab fa-linkedin"></i>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="x icon" type="img/png" href="/images/CvSU-logo-16x16.webp">
+    <link rel="x icon" type="img/png" href="{{ config('r2.endpoint') }}/images/CvSU-logo-16x16.webp">
     <meta charset="UTF-8">
     <title>
       @yield('title') {{ config('app.name') }}

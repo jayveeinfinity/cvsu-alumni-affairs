@@ -7,7 +7,7 @@
 @section('main-content') 
 <div class="h-full flex justify-center">
     <div class="h-screen flex lg:flex flex-row w-full h-screen">
-        <div class="flex bg-cover bg-center h-full lg:w-1/2 flex flex-col bg-cover bg-center h-full w-full" style="background-image: url('images/landing/CvSU.jpg');">
+        <div class="flex bg-cover bg-center h-full lg:w-1/2 flex flex-col bg-cover bg-center h-full w-full" style="background-image: url('{{ config('r2.endpoint') }}/images/landing/CvSU.jpg');">
             <div class="flex items-center justify-center h-screen">
                 <div class="items-center pb-28 lg:pb-2 flex flex-col items-center sm:flex flex-col items-center">
                     <img class="w-24 lg:w-80 mb-3" src="images/CvSU-logo.png" alt="cvsu logo">
@@ -32,7 +32,7 @@
                     <div class="flex flex-col items-center justify-center">
                         <a href="{{ route('auth.google') }}"                 
                             class="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
-                            <img class="w-6 h-6" src="images/CvSU-logo-64x64.webp"
+                            <img class="w-6 h-6" src="{{ config('r2.endpoint') }}/images/CvSU-logo-64x64.webp"
                                 loading="lazy" alt="google logo">
                             <span class="text-gray-700">Sign in with CvSU Email</span>
                         </a>
@@ -65,7 +65,7 @@
                         <div class="flex flex-col items-center justify-center">
                             <a href="{{ route('auth.google') }}"                 
                                 class="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">
-                                <img class="w-6 h-6" src="images/Google-logo-512x512.webp"
+                                <img class="w-6 h-6" src="{{ config('r2.endpoint') }}/images/Google-logo-512x512.webp"
                                     loading="lazy" alt="google logo">
                                 <span class="text-gray-700">Sign in with Google</span>
                             </a>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="hidden lg:block flex-none absolute bottom-0 right-0">
-            <img src="images/landing/laya at diwa - Edited.png" alt="Image" class="w-auto h-96 opacity-40" />
+            <img src="{{ config('r2.endpoint') }}/images/landing/laya at diwa - Edited.png" alt="Image" class="w-auto h-96 opacity-40" />
         </div>
     </div>
 </div>
