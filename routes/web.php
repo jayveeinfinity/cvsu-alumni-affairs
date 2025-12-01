@@ -7,16 +7,16 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobPostingController;
 use App\Http\Controllers\Admin\AlumniProfileController;
-use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\LandingController;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/signin', function () {
@@ -55,29 +55,33 @@ Route::middleware('auth')->group(function () {
     | Admin Routes
     |--------------------------------------------------------------------------
     */
-    Route::prefix('admin')->group(function () {
-        Route::get('/', function() {
-            return redirect()->route('admin.dashboard');
-        });
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/alumni-profiles', [AlumniProfileController::class, 'index'])->name('admin.alumni-profiles');
-        Route::post('/alumni-profiles/import', [AlumniProfileController::class, 'import'])->name('admin.alumni-profiles.import');
-        Route::post('/alumni-profiles', [AlumniProfileController::class, 'store'])->name('admin.alumni-profiles.store');
-        Route::get('/alumni-profiles/{id}', [AlumniProfileController::class, 'edit'])->name('admin.alumni-profiles.edit');
-        Route::post('/alumni-profiles/{id}', [AlumniProfileController::class, 'update'])->name('admin.alumni-profiles.update');
-        Route::get('/job-postings', [JobPostingController::class, 'index'])->name('admin.job-postings');
-        Route::post('/job-postings/store', [JobPostingController::class, 'store'])->name('admin.job-postings.store');
-        Route::post('/job-postings/import', [JobPostingController::class, 'import'])->name('admin.job-postings.import');
-        Route::get('/users', [UserController::class, 'index'])->name('admin.users');
-        Route::get('/industries', [IndustryController::class, 'index'])->name('admin.industries');
-        Route::post('/industries', [IndustryController::class, 'store'])->name('admin.industries.store');
-        Route::get('/announcements', [AnnouncementController::class, 'index'])->name('admin.announcements.index');
-        Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show'])->name('admin.announcements.show');
-        Route::post('/announcements', [AnnouncementController::class, 'store'])->name('admin.announcements.store');
-        Route::put('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('admin.announcements.update');
-        Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports.index');
+    Route::middleware(['role:admin|superadmin'])
+        ->prefix('admin')
+        ->name('admin.')
+        ->group(function () {
+            Route::get('/', function() {
+                return redirect()->route('admin.dashboard');
+            });
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/alumni-profiles', [AlumniProfileController::class, 'index'])->name('alumni-profiles');
+            Route::post('/alumni-profiles/import', [AlumniProfileController::class, 'import'])->name('alumni-profiles.import');
+            Route::post('/alumni-profiles', [AlumniProfileController::class, 'store'])->name('alumni-profiles.store');
+            Route::get('/alumni-profiles/{id}', [AlumniProfileController::class, 'edit'])->name('alumni-profiles.edit');
+            Route::post('/alumni-profiles/{id}', [AlumniProfileController::class, 'update'])->name('alumni-profiles.update');
+            Route::get('/job-postings', [JobPostingController::class, 'index'])->name('job-postings');
+            Route::post('/job-postings/store', [JobPostingController::class, 'store'])->name('job-postings.store');
+            Route::post('/job-postings/import', [JobPostingController::class, 'import'])->name('job-postings.import');
+            Route::get('/users', [UserController::class, 'index'])->name('users');
+            Route::post('/user', [UserController::class, 'store'])->name('user.store');
+            Route::get('/industries', [IndustryController::class, 'index'])->name('industries');
+            Route::post('/industries', [IndustryController::class, 'store'])->name('industries.store');
+            Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+            Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show'])->name('announcements.show');
+            Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
+            Route::put('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');
+            Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
-        Route::post('/alumni-profiles/send-email/{id}', [AlumniProfileController::class, 'send'])->name('admin.alumni-profiles.send-email');
+            Route::post('/alumni-profiles/send-email/{id}', [AlumniProfileController::class, 'send'])->name('alumni-profiles.send-email');
     });
 
     /*

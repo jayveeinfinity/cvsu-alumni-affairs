@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserProfile\StoreRequest;
 
 class UserController extends Controller
 {
@@ -33,12 +36,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\UserProfile\StoreRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request): JsonResponse
     {
-        //
+        User::create($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'message' => "Successfully created!"
+        ], Response::HTTP_CREATED);
     }
 
     /**

@@ -42,6 +42,8 @@ class SignUpController extends Controller
                 'email' => $validated['email']
             ]);
 
+            $user->assignRole('alumni');
+
             // Create User Profile
             $userProfile = UserProfile::create([
                 'user_id' => $user->id,

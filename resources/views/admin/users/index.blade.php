@@ -33,7 +33,7 @@
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="w-100 card-title">Users ({{ $users->total() }})</h3>
                         <div class="w-100 d-flex flex-row-reverse" style="gap: 1rem;">
-                            <!-- <button class="btn btn-outline-success" data-toggle="modal" data-target="#addAlumniForm" data-backdrop="static" data-keyboard="false" ><i class="fas fa-user-plus"></i> Add user</button> -->
+                            <button class="btn btn-outline-success" data-toggle="modal" data-target="#addAdminForm" data-backdrop="static" data-keyboard="false" ><i class="fas fa-user-plus"></i> Add admin user</button>
                             <!-- <button class="btn btn-outline-success" href="javascript:void(0)" data-click="importExcelFile"><i class="fas fa-file-excel" data-click="importExcelFile"></i> Import from excel</button> -->
                             <!-- <span class="btn btn-outline-success" style="display: none;" data-loading="import"><i class="fas fa-compact-disc fa-spin"></i> Importing...</span> -->
                         </div>
@@ -99,63 +99,32 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="addAlumniForm" tabindex="-1" role="dialog" aria-labelledby="addAlumniFormTitle" aria-hidden="true">
+
+<!-- Create Modal -->
+<div class="modal fade" id="addAdminForm" tabindex="-1" role="dialog" aria-labelledby="addAdminFormTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-user-plus"></i> Add alumni form</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-user-plus"></i> Add admin form</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="alert alert-danger pl-0 d-none" id="addAlumniAlert">
+                <div class="alert alert-danger pl-0 d-none" id="addAdminAlert">
                     <ul class="mb-0" id="errorList"></ul>
                 </div>
                 <form>
-                    <!-- Student Number -->
-                    <div class="form-group">
-                        <label for="student_number" class="col-form-label">Student Number</label>
-                        <input type="text" class="form-control" id="student_number" name="student_number" placeholder="Type student number..." required maxlength="9">
-                    </div>
-                    <!-- First Name -->
-                    <div class="form-group">
-                        <label for="first_name" class="col-form-label">First Name</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Type first name..." required>
-                    </div>
-                    <!-- Last Name -->
-                    <div class="form-group">
-                        <label for="last_name" class="col-form-label">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Type last name..." required>
-                    </div>
-                    <!-- Course -->
-                    <div class="form-group row">
-                        <div class="col-12 col-md-6">
-                            <label for="course" class="col-form-label">Course</label>
-                            <select class="form-control" id="course" name="course" required>
-                                <option value="" disabled selected>Choose course...</option>
-                                <option value="BSIT">BSIT</option>
-                                <option value="BSCS">BSCS</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="year_graduated" class="col-form-label">Year Graduated</label>
-                            <select class="form-control" id="year_graduated" name="year_graduated" required>
-                                <option value="" disabled selected>Choose year graduated...</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                            </select>
-                        </div>
+                    <!-- Email -->
+                    <div class="form-group mb-0">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Type email..." required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-click="addAlumni">Save changes</button>
+                <button type="button" class="btn btn-primary" data-click="addAdmin">Save changes</button>
             </div>
         </div>
     </div>
@@ -171,23 +140,19 @@
         e = e || window.event;
         var target = e.target || e.srcElement;
         switch(target.dataset.click) {
-            case "addAlumni":
+            case "addAdmin":
                 var formData = new FormData();
                 formData.append('_token', "{{ csrf_token() }}");
-                formData.append('student_number', $('#student_number').val());
-                formData.append('first_name', $('#first_name').val());
-                formData.append('last_name', $('#last_name').val());
-                formData.append('course', $('#course').find(":selected").val());
-                formData.append('year_graduated', $('#year_graduated').find(":selected").val());
+                formData.append('email', $('#email').val());
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('admin.alumni-profiles.store') }}",
+                    url: "{{ route('admin.user.store') }}",
                     data: formData,
                     contentType: false,
                     processData: false,
                     success: (response) =>  {
-                        toastr.success('Successfully added to alumni profiles!', 'Alumni added');
-                        $('#addAlumniForm').modal('hide');
+                        toastr.success('Successfully created!', 'Admin added');
+                        $('#addAdminForm').modal('hide');
                     },
                     error: (response) => {
                         $('#errorList').empty();
@@ -204,8 +169,8 @@
                                 }
                             }
 
-                            if ($('#addAlumniAlert').hasClass("d-none")) {
-                                $('#addAlumniAlert').removeClass("d-none");
+                            if ($('#addAdminAlert').hasClass("d-none")) {
+                                $('#addAdminAlert').removeClass("d-none");
                             }
                         } else {
                             toastr.error('An unexpected error occurred.', 'Something went wrong...');
@@ -213,51 +178,9 @@
                     }
                 });
                 break;
-            case "importExcelFile":
-                excelUpload();
-                break;
         }
     });
 
-    function excelUpload() {
-        (async () => {
-            const { value: file } = await Swal.fire({
-                title: '<i class="fas fa-file-excel"></i> Select excel file',
-                input: 'file',
-                inputAttributes: {
-                    'accept': '.xlsx, .xls',
-                    'aria-label': 'Upload excel file'
-                },
-                showCancelButton: true,
-                confirmButtonText: 'Submit'
-            })
-            if (file) {
-                loadingSpinner.style.display = 'inline';
-                importExcelFileBtn.style.display = 'none';
-                
-                var formData = new FormData();
-                formData.append('alumni_file', file);
-                formData.append('_token', "{{ csrf_token() }}");
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('admin.alumni-profiles.import') }}",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        // Hide spinner and show button again
-                        loadingSpinner.style.display = 'none';
-                        importExcelFileBtn.style.display = 'inline';
-
-                        // Display toast notification
-                        toastr.success(`${response.inserted} rows inserted,<br>${response.duplicates} rows skipped,<br>${response.failed} rows failed`, 'Import completed');
-                    }
-                });
-            }
-        })();
-    }
-</script>
-<script>
     toastr.options = {
       "closeButton": true,
       "progressBar": true,

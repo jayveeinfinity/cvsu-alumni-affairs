@@ -125,7 +125,7 @@
                                                     $image = "collaboration-area";
                                                 @endphp
                                                 <div class="img-square-wrapper">
-                                                    <img class="" src="images/facilities/{{ $image }}.jpg" alt="Card image cap" style="height: 180px;">
+                                                    <img class="" src="{{ config('r2.endpoint') }}/images/facilities/{{ $image }}.jpg" alt="Card image cap" style="height: 180px;">
                                                 </div>
                                                 <div class="card-body">
                                                 <h4 class="card-title">Test<span class="badge badge-pill {{ $status }}">{{ Str::upper("Pending") }}</span></h4>

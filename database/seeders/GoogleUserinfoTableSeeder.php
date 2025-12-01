@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GoogleUserinfoTableSeeder extends Seeder
 {
@@ -14,13 +15,9 @@ class GoogleUserinfoTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
-        \DB::table('google_userinfo')->delete();
-        
-        \DB::table('google_userinfo')->insert(array (
-            0 => 
-            array (
+        DB::table('google_userinfo')->delete();
+        DB::table('google_userinfo')->insert([
+            [
                 'id' => 1,
                 'gid' => '118313210547672468881',
                 'email' => 'jayveeinfinity@gmail.com',
@@ -32,9 +29,8 @@ class GoogleUserinfoTableSeeder extends Seeder
                 'hd' => NULL,
                 'created_at' => '2024-03-20 00:31:14',
                 'updated_at' => '2024-03-20 01:19:16',
-            ),
-            1 => 
-            array (
+            ],
+            [
                 'id' => 2,
                 'gid' => '109936788382192850270',
                 'email' => 'johnvincent.bonza@cvsu.edu.ph',
@@ -46,9 +42,7 @@ class GoogleUserinfoTableSeeder extends Seeder
                 'hd' => 'cvsu.edu.ph',
                 'created_at' => '2024-03-20 00:31:30',
                 'updated_at' => '2024-03-25 02:00:17',
-            ),
-        ));
-        
-        
+            ]
+        ]);
     }
 }

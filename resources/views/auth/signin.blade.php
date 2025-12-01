@@ -10,7 +10,7 @@
         <div class="flex bg-cover bg-center h-full lg:w-1/2 flex flex-col bg-cover bg-center h-full w-full" style="background-image: url('{{ config('r2.endpoint') }}/images/landing/CvSU.jpg');">
             <div class="flex items-center justify-center h-screen">
                 <div class="items-center pb-28 lg:pb-2 flex flex-col items-center sm:flex flex-col items-center">
-                    <img class="w-24 lg:w-80 mb-3" src="images/CvSU-logo.png" alt="cvsu logo">
+                    <img class="w-24 lg:w-80 mb-3" src="{{ config('r2.endpoint') }}/images/CvSU-logo.png" alt="cvsu logo">
                     <div class=" align-text-top text-center lg:text-center text-white mb-2">
                         <p class="font-bold text-lg md:text-2xl lg:text-2xl"><b class="uppercase">Cavite State University</b> <br> Office of Alumni Affairs - CEIT</p>
                         <p class="text-white font-semibold text-lg pb-16">Online Tracer System</p>

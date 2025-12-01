@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Account approved &sdot;  {{ config('app.name') }}</title>
-        <link rel="x icon" type="img/png" href="images/CvSU-logo-16x16.webp">
+        <link rel="x icon" type="img/png" href="{{ config('r2.endpoint') }}/images/CvSU-logo-16x16.webp">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>

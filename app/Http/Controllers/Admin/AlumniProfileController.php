@@ -13,7 +13,7 @@ use App\Imports\AlumniProfilesImport;
 use App\Http\Controllers\MailController;
 use App\Http\Requests\AlumniProfile\StoreRequest;
 use App\Http\Requests\AlumniProfile\ImportRequest;
-use App\Http\Requests\AlumniProfile\UdpateRequest;
+use App\Http\Requests\AlumniProfile\UpdateRequest;
 
 class AlumniProfileController extends Controller
 {
@@ -91,7 +91,7 @@ class AlumniProfileController extends Controller
      * @param  \App\Models\AlumniProfile $alumniProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(UdpateRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $alumniProfile = AlumniProfile::findOrFail($id);
     
